@@ -19,11 +19,11 @@ def error_code(n):
 
 def main():
     file_handler_obj = Handler()
-    if(file_handler_obj.read_file == 0):
+    content = file_handler_obj.read_file()
+    if(content == 0):
         error_code(0)
     else:
-        content = file_handler_obj.read_file()
-        # print(content)
+        print(content)
 
 
 if __name__ == '__main__':
