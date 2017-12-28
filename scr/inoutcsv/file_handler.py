@@ -12,7 +12,6 @@ __email__ = "uni.goethe.horde@gmail.com"
 
 class Handler():
     read_data = 0
-    read_size = 0
     fname = "Morgen_Kinder.txt"
     UTF8_fname = "UTF8_Morgen_Kinder.txt"
 
@@ -21,7 +20,6 @@ class Handler():
 
     def read_file(self):
         test_file = self.UTF8_fname
-
         bom_dict = {
             codecs.decode(codecs.BOM_UTF8, "cp1252"): "UTF-8-SIG",
             codecs.decode(codecs.BOM_UTF16_LE, "cp1252"): "UTF-16",
@@ -30,8 +28,9 @@ class Handler():
         f = open(test_file, "r")
         temp = f.readline()
         f.closed
+
         for key in bom_dict:
-            if (temp.startswith(key)):
+            if (temp.startswith(key)):  # check for empty lines
                 file_encoding = bom_dict.get(key)
                 print("Codec found", bom_dict.get(key), "\n")
                 break
