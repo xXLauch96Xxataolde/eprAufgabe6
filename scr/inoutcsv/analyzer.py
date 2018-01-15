@@ -3,6 +3,7 @@ import json
 from inoutcsv import obj_writer
 
 def analyzer(file_data):
+    """analyses the text file"""
     split_list = file_data.split()
     print(split_list)
     print(len(split_list))
