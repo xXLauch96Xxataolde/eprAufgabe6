@@ -5,6 +5,10 @@ initializes the construction of the roots and class objects.
 """
 
 from file_handler import Handler
+import analyzer
+from textwrap import indent
+import json
+from idlelib.iomenu import encoding
 
 __author__ = "1234567: Xmas Jesus"
 __copyright__ = "Copyright 2017/2018 - EPR-Goethe-Uni"
@@ -24,6 +28,10 @@ def main():
         error_code(0)
     else:
         print(content)
+        json_obj = analyzer.analyzer(content)
+        parsed = json.loads(json_obj)
+        print(json.dumps(parsed, indent=4, sort_keys=True,
+                         ensure_ascii=False))  # encoding
 
 
 if __name__ == '__main__':
