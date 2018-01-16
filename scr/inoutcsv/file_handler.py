@@ -1,4 +1,4 @@
-"""Module which handles the GUI
+"""Module which handles the GUI and decodes the text document
 """
 
 

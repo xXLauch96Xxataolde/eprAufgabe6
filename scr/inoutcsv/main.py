@@ -1,7 +1,6 @@
 """The Main Function
 
-This module is the start of our pah_tum program. It holds the menue, the help docs and 
-initializes the construction of the roots and class objects. 
+This module controls the procedure of the program
 """
 
 from file_handler import Handler
@@ -24,7 +23,7 @@ def error_code(n):
 def main():
     """main function"""
     file_handler_obj = Handler()
-    if file_handler_obj.filename != "":
+    if file_handler_obj.filename != "":   # if a file was chosen
         content = file_handler_obj.read_file()
         if content == 0:    # chosen file not found
             error_code(0)
@@ -34,7 +33,7 @@ def main():
             parsed = json.loads(json_obj)
             print(json.dumps(parsed, indent=4, sort_keys=True,
                              ensure_ascii=False))  # encoding
-    else:
+    else:  # if user presses cancel button
         print("Programm wird abgebrochen")
 
 
