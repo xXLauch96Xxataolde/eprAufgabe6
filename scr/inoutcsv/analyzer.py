@@ -14,10 +14,10 @@ def analyzer(file_data):
     stroke_count_n = stroke_count(file_data)  # counts the number of key strokes
     word_list = string_cleaner(word_list)     # removes the special characters of the word list
     word_count_n = word_count(word_list)      # calculates the number of words in the list
-    word_stat = word_frequency_distribution(word_list)
-    char_stat = char_frequency_distribution(file_data)
-    mean_word = mean_word_length(word_list)
-    char_n = char_count(file_data)
+    word_stat = word_frequency_distribution(word_list)  # relative frequency of words
+    char_stat = char_frequency_distribution(file_data)  # relative frequency of characters
+    mean_word = mean_word_length(word_list)  # calculates mean length of a word
+    char_n = char_count(file_data)   # calculates the number of characters
     # saves the data in an object
     statistic_obj = obj_writer.AS(word_count_n, stroke_count_n, word_stat, mean_word, char_n,
                                   char_stat)
@@ -48,6 +48,7 @@ def char_count(file_data):
     """function, which counts the amount of characters in a given string without spaces"""
     num_chars = len(file_data)    # number of all characters in the text
     number_space = file_data.count(" ")  # number of spaces in the text
+    number_space += file_data.count("\n")
     num_chars -= number_space   # number of characters without spaces
     return num_chars
 
@@ -56,8 +57,10 @@ def char_frequency_distribution(file_data):
     """functions, which takes as a parameter a text and returns a dictionnary with character:
     relative frequency"""
     char_n = len(file_data)  # number of characters in the text
+    char_n -= file_data.count("\n")
     char_stat_relativ = {}   # dictionary for relative frequency
-    char_stat = {i: file_data.count(i) for i in file_data}  # dictionary with total frequency
+    # dictionary with total frequency
+    char_stat = {i: file_data.count(i) for i in file_data if i != "\n"}
     for key in char_stat:
         average = char_stat[key] * 100 / char_n
         char_stat_relativ.update({key: average})
