@@ -1,7 +1,7 @@
-"""Docstrings
+"""Module which handles
 """
 
-import io
+
 import codecs
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
@@ -22,12 +22,11 @@ class Handler():
         self.root = tk.Tk()
         self.root.withdraw()
         self.filename = askopenfilename()
-        if (self.filename == ""):
+        if self.filename == "":
             print("No file chosen")
         else:
             print("filename:", self.filename)
             self.read_file()
-    
     
     def read_file(self):
         test_file = self.filename
@@ -38,19 +37,20 @@ class Handler():
 
         f = open(test_file, "r")
         temp = f.readline()
-        f.closed
+        f.close()
 
         for key in bom_dict:
-            if (temp.startswith(key)):  # check for empty lines
+            if temp.startswith(key):  # check for empty lines
                 file_encoding = bom_dict.get(key)
                 # print("Codec found", bom_dict.get(key), "\n")
                 break
-            f.closed
+            f.close()
 
         try:
-            with open(test_file, "r", encoding=file_encoding, errors="surrogateescape", buffering=1) as f:
+            with open(test_file, "r", encoding=file_encoding, errors="surrogateescape",
+                      buffering=1) as f:
                 self.read_data = f.read()
-            f.closed
-            return(self.read_data)
+            f.close()
+            return self.read_data
         except FileNotFoundError:
-            return(0)
+            return 0

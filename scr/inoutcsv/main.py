@@ -6,9 +6,7 @@ initializes the construction of the roots and class objects.
 
 from file_handler import Handler
 import analyzer
-from textwrap import indent
 import json
-from idlelib.iomenu import encoding
 
 __author__ = "1234567: Xmas Jesus"
 __copyright__ = "Copyright 2017/2018 - EPR-Goethe-Uni"
@@ -16,15 +14,18 @@ __credits__ = ""
 __email__ = "uni.goethe.horde@gmail.com"
 
 
+# ------------------FUNCTIONS----------------------------------------------------------------------
 def error_code(n):
-    if(n == 0):
+    """procedure, if the chosen file is not found"""
+    if n == 0:
         print("No such file or directory")
 
 
 def main():
+    """main function"""
     file_handler_obj = Handler()
     content = file_handler_obj.read_file()
-    if(content == 0):
+    if content == 0:    # chosen file not found
         error_code(0)
     else:
         print(content)
@@ -34,5 +35,6 @@ def main():
                          ensure_ascii=False))  # encoding
 
 
+# -------- MAIN -----------------------------------------------------------------------------------
 if __name__ == '__main__':
     main()
