@@ -15,7 +15,12 @@ def analyzer(file_data):
     word_list = string_cleaner(word_list)     # removes the special characters of the word list
     word_count_n = word_count(word_list)      # calculates the number of words in the list
     word_stat = word_frequency_distribution(word_list)
-    statistic_obj = obj_writer.AS(word_count_n, stroke_count_n, word_stat)  # saves the data in an object
+    char_stat = char_frequency_distribution(file_data)
+    mean_word = mean_word_length(word_list)
+    char_n = char_count(file_data)
+    # saves the data in an object
+    statistic_obj = obj_writer.AS(word_count_n, stroke_count_n, word_stat, mean_word, char_n,
+                                  char_stat)
     json_obj = json.dumps(statistic_obj.__dict__)   # turns the object to a JSON object
     return json_obj
 
@@ -39,27 +44,52 @@ def stroke_count(file_data):
     return stroke_count_n
 
 
-def char_count():
-    pass
+def char_count(file_data):
+    """function, which counts the amount of characters in a given string without spaces"""
+    num_chars = len(file_data)    # number of all characters in the text
+    number_space = file_data.count(" ")  # number of spaces in the text
+    num_chars -= number_space   # number of characters without spaces
+    return num_chars
 
 
-def char_frequency_distribution():
-    pass
+def char_frequency_distribution(file_data):
+    """functions, which takes as a parameter a text and returns a dictionnary with character:
+    relative frequency"""
+    char_n = len(file_data)  # number of characters in the text
+    char_stat_relativ = {}   # dictionary for relative frequency
+    char_stat = {i: file_data.count(i) for i in file_data}  # dictionary with total frequency
+    for key in char_stat:
+        average = char_stat[key] * 100 / char_n
+        char_stat_relativ.update({key: average})
+    return char_stat_relativ
 
 
 def word_frequency_distribution(word_list):
+    """functions which takes as parameter a list of words and returns a dictionnary with word:
+    relative frequency"""
     num_words = len(word_list)   # number of words in the text
     words_stat_relativ = {}      # dictionary for relative frequency
     words_stat = {i: word_list.count(i) for i in word_list}   # dictionary with total frequency
     for key in words_stat:
         average = words_stat[key] * 100 / num_words
         words_stat_relativ.update({key: average})
-    print(words_stat_relativ)
     return words_stat_relativ
 
 
-def mean_word_length():
-    pass
+def mean_word_length(word_list):
+    """function which takes as a parameter the cleaned word list and returns the mean word length
+    """
+    num_words = len(word_list)  # number of words in the text
+    num_char = 0     # number of characters
+    char_list = []   # list of all characters
+    for i in range(num_words):
+        word = str(word_list[i])   # takes one word from the word list
+        for j in range(len(word)):
+            char_list.append(word[j])   # appends the letters of the word to the list
+    num_char += len(char_list)   # lenght of the character list = total amount of characters
+    mean_length = num_char/num_words
+    print(mean_length)
+    return mean_length
     
     
 def string_cleaner(word_list):
