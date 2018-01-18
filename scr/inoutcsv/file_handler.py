@@ -16,46 +16,53 @@ class Handler:
     read_data = None
     fname = "Morgen_Kinder.txt"
     UTF8_fname = "UTF8_Morgen_Kinder.txt"
-    filename = ""
+    filepath = ""
 
     def __init__(self):
         """class inisialization"""
         self.root = tk.Tk()
         self.root.withdraw()
-        self.filename = askopenfilename()   # creates a file dialog object
-        if self.filename == "":
-            print("No file chosen")
-        else:
-            print("filename:", self.filename)
-            self.read_file()
-    
+        self.filepath = askopenfilename()   # creates a file dialog object
+
     def read_file(self):
+        """read_file
+        
+        catch lookup error with buffering 
+        and return error = 3
+        """
         file_encoding = " "
-        test_file = self.filename
-        # dictionnary to test for different coding systems
+        # dictionary to test for different coding systems
+        if (self.filepath == ""):  # checks if user aborted file dialog
+            return(2)
+        print("filepath:", self.filepath)
+
         encode_dict = {
             codecs.decode(codecs.BOM_UTF8, "cp1252"): "UTF-8-SIG",
             codecs.decode(codecs.BOM_UTF16_LE, "cp1252"): "UTF-16",
         }
-
-        f = open(test_file, "r")
-        temp = f.readline()       # save the first line in an string temp
-        f.close()
+        try:
+            f = open(self.filepath, "r")
+            temp = f.readline()       # save the first line in an string temp
+            f.close()
+        except UnicodeDecodeError:
+            return(1)
 
         for key in encode_dict:
             if temp.startswith(key):  # check for empty lines
-                file_encoding = encode_dict.get(key)  # determines, which encoding is used
-                print("Codec found", encode_dict.get(key), "\n")   # for testing
+                # determines, which encoding is used
+                file_encoding = encode_dict.get(key)
+                print("Codec found", encode_dict.get(
+                    key), "\n")   # for testing
                 break
             f.close()
 
         try:
-            with open(test_file, "r", encoding=file_encoding, errors="surrogateescape",
+            with open(self.filepath, "r", encoding=file_encoding, errors="surrogateescape",
                       buffering=1) as f:
                 # buffering=1 means line buffered, errors = 'surrogateescape' replace byte to
                 # encoding code, if error, turn back to same byte
                 self.read_data = f.read()
             f.close()
-            return self.read_data
+            return (self.read_data, self.filepath)
         except FileNotFoundError:  # if file/directory is requested which doesn't exist
-            return 0
+            return(0)

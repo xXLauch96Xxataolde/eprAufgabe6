@@ -5,7 +5,7 @@ import obj_writer
 
 
 # -----------------------------FUNCTIONS-----------------------------------------------------------
-def analyzer(file_data):
+def analyzer(file_data, filepath):
     """function, which has as a parameter the whole text file as a string and returns the
     statistics of this text file as an JSON Object"""
     word_list = file_data.split()   # splits the text file into words
@@ -19,8 +19,8 @@ def analyzer(file_data):
     mean_word = mean_word_length(word_list)  # calculates mean length of a word
     char_n = char_count(file_data)   # calculates the number of characters
     # saves the data in an object
-    statistic_obj = obj_writer.AS(word_count_n, stroke_count_n, word_stat, mean_word, char_n,
-                                  char_stat)
+    statistic_obj = obj_writer.OutFileWriter(word_count_n, stroke_count_n, word_stat, mean_word, char_n,
+                                  char_stat, filepath)
     json_obj = json.dumps(statistic_obj.__dict__)   # turns the object to a JSON object
     return json_obj
 

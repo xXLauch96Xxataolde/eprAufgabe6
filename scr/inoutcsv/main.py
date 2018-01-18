@@ -16,27 +16,36 @@ __email__ = "uni.goethe.horde@gmail.com"
 # ------------------FUNCTIONS----------------------------------------------------------------------
 def error_code(n):
     """procedure, if the chosen file is not found"""
-    if n == 0:
-        print("No such file or directory")
+    if (n == 0):
+        print("No such file or directory.")
+    elif (n == 1):
+        print("Can not decode file.")
+    elif (n == 2):
+        print("Process aborted by User.")
+    elif (n == 3):
+        print("LookupError: unknown encoding")
 
 
 def main():
     """main function"""
     file_handler_obj = Handler()
-    if file_handler_obj.filename != "":   # if a file was chosen
-        content = file_handler_obj.read_file()
-        if content == 0:    # chosen file not found
-            error_code(0)
-        else:
-            print(content)
-            json_obj = analyzer.analyzer(content)
-            parsed = json.loads(json_obj)
-            print(json.dumps(parsed, indent=4, sort_keys=True,
-                             ensure_ascii=False))  # encoding
-    else:  # if user presses cancel button
-        print("Programm wird abgebrochen")
+    content = file_handler_obj.read_file()
+    if isinstance(content, int):
+        error_code(content)
+    else:
 
+        filepath = content[1]
+        content = content[0]
+        print(filepath)
+        # if no problem in file, a content is a tuple
+        json_obj = analyzer.analyzer(content, filepath)
+        parsed = json.loads(json_obj)
 
-# -------- MAIN -----------------------------------------------------------------------------------
+ # Delete ''' for json printing 
+'''        print(json.dumps(parsed, indent=4, sort_keys=True,
+                         ensure_ascii=False))  # encoding FOR TESTING
+'''
+
+# -------- MAIN ----------------------------------------------------------
 if __name__ == '__main__':
     main()
