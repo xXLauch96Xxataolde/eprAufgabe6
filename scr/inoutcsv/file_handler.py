@@ -6,10 +6,9 @@ import codecs
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
 
-__author__ = "1234567: Xmas Jesus"
-__copyright__ = "Copyright 2017/2018 - EPR-Goethe-Uni"
-__credits__ = ""
-__email__ = "uni.goethe.horde@gmail.com"
+__author__ = "5241945: Elisabeth Zeyen, 6785468: Robert Anselm Dieter am Wege"
+__copyright__ = "Copyright 2017/2018 – EPR-Goethe-Uni"
+__email__ = "lisa.zeyen@outlook.com, uni.goethe.horde@gmail.com"
 
 
 class Handler:

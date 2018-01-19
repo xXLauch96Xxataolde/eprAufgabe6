@@ -4,17 +4,21 @@ module which contains the class OutFileWriter, which saves all the statistic dat
 Because json and python get along so well, it is a nice trick to save the statistics to a 
 object and then lets the built in function .__dict__ compile the obj to a json dumpable file
 """
+
 import json
 import os
-import codecs
-import math
-from distutils.command.check import check
-from fileinput import filename
 
 
-class OutFileWriter():
+__author__ = "5241945: Elisabeth Zeyen, 6785468: Robert Anselm Dieter am Wege"
+__copyright__ = "Copyright 2017/2018 – EPR-Goethe-Uni"
+__email__ = "lisa.zeyen@outlook.com, uni.goethe.horde@gmail.com"
 
-    def __init__(self, word_count, stroke_count, word_stat, mean_word, char_n, char_stat, filepath):
+
+class OutFileWriter:
+
+    def __init__(self, word_count, stroke_count, word_stat, mean_word, char_n, char_stat,
+                 filepath):
+        """constructor, called when the instance is created"""
         rounded_char_stat = self.dict_entry_float_rounder(char_stat)
         rounded_word_stat = self.dict_entry_float_rounder(word_stat)
         self.word_count = word_count
@@ -33,9 +37,10 @@ class OutFileWriter():
         """
         for k in float_dict:
             float_dict[k] = round(float_dict[k], 3)
-        return(float_dict)
+        return float_dict
 
     def check_remove_stat_file(self, filepath):
+        """function, which deletes a file"""
         try:
             os.remove(filepath)
         except FileNotFoundError:

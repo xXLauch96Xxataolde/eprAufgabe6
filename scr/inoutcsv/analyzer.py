@@ -3,6 +3,10 @@
 import json
 import obj_writer
 
+__author__ = "5241945: Elisabeth Zeyen, 6785468: Robert Anselm Dieter am Wege"
+__copyright__ = "Copyright 2017/2018 – EPR-Goethe-Uni"
+__email__ = "lisa.zeyen@outlook.com, uni.goethe.horde@gmail.com"
+
 
 # -----------------------------FUNCTIONS-----------------------------------------------------------
 def analyzer(file_data, filepath):
@@ -19,8 +23,8 @@ def analyzer(file_data, filepath):
     mean_word = mean_word_length(word_list)  # calculates mean length of a word
     char_n = char_count(file_data)   # calculates the number of characters
     # saves the data in an object
-    statistic_obj = obj_writer.OutFileWriter(word_count_n, stroke_count_n, word_stat, mean_word, char_n,
-                                  char_stat, filepath)
+    statistic_obj = obj_writer.OutFileWriter(word_count_n, stroke_count_n, word_stat, mean_word,
+                                             char_n, char_stat, filepath)
     """print("type word_count_n ", type(word_count_n))
     print("type i ", type(stroke_count_n))
     print("word_stat ", type(word_stat))
