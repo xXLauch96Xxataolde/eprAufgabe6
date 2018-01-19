@@ -41,7 +41,7 @@ def list_dirs():
             else:
                 print("Non valid input")
         except ValueError:
-            print("No parsable Input. Repeat")
+            print("No parsable Input. Repeat")  # yes this word exists
 
 
 def list_txts():
