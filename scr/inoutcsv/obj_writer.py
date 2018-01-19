@@ -1,30 +1,47 @@
-"""module which contains the class OutFileWriter, which saves all the statistic data in one object"""
+"""OutFileWriter
+
+module which contains the class OutFileWriter, which saves all the statistic data in one object.
+Because json and python get along so well, it is a nice trick to save the statistics to a 
+object and then lets the built in function .__dict__ compile the obj to a json dumpable file
+"""
 import json
 import os
 import codecs
-from idlelib.iomenu import encoding
+import math
 
 
 class OutFileWriter():
 
-    def __init__(self, word_count, stroke_count, word_stat_relativ, mean_word, char_n, char_stat, filepath):
+    def __init__(self, word_count, stroke_count, word_stat, mean_word, char_n, char_stat, filepath):
+        rounded_char_stat = self.dict_entry_float_rounder(char_stat)
+        rounded_word_stat = self.dict_entry_float_rounder(word_stat)
         self.word_count = word_count
         self.stroke_count = stroke_count
-        self.word_stat_relativ = word_stat_relativ
-        self.mean_word = mean_word
+        self.word_stat_relativ = rounded_word_stat
+        self.mean_word = round(mean_word, 3)
         self.char_n = char_n
-        self.char_stat = char_stat
+        self.char_stat = rounded_char_stat
         self.save_to_file(filepath)
+
+    def dict_entry_float_rounder(self, float_dict):
+        """dict_entry_float_rounder
+
+        What a handy function. This func takes a dict full of keys and values 
+        which are floats and rounds the vals to 3 digits after the deciaml point.
+        """
+        for k in float_dict:
+            float_dict[k] = round(float_dict[k], 3)
+        return(float_dict)
 
     def save_to_file(self, filepath):
         """Save_to_file
-        
+
         This func takes a filepath as argument, splits it at ".", concatenates the
         analyzed txt file name with "_statitics.", adds the file ending "txt" and
         gives this string as the location for the statistics file to save
         """
         temp_var = filepath.split(".")
-        temp_var = temp_var[0]+"_statistics."+temp_var[1]
+        temp_var = temp_var[0] + "_statistics." + temp_var[1]
         with open(temp_var, "w", encoding="UTF-8") as file:
             json.dump(self.__dict__, file, ensure_ascii=False, indent=4)
         file.close()

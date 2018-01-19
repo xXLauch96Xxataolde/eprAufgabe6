@@ -36,7 +36,6 @@ def main():
 
         filepath = content[1]
         content = content[0]
-        print(filepath)
         # if no problem in file, a content is a tuple
         json_obj = analyzer.analyzer(content, filepath)
         parsed = json.loads(json_obj)

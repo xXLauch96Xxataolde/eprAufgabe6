@@ -34,7 +34,7 @@ class Handler:
         # dictionary to test for different coding systems
         if (self.filepath == ""):  # checks if user aborted file dialog
             return(2)
-        print("filepath:", self.filepath)
+        print("Filepath:", self.filepath)
 
         encode_dict = {
             codecs.decode(codecs.BOM_UTF8, "cp1252"): "UTF-8-SIG",
@@ -57,12 +57,15 @@ class Handler:
             f.close()
 
         try:
-            with open(self.filepath, "r", encoding=file_encoding, errors="surrogateescape",
-                      buffering=1) as f:
-                # buffering=1 means line buffered, errors = 'surrogateescape' replace byte to
-                # encoding code, if error, turn back to same byte
-                self.read_data = f.read()
-            f.close()
+            try:
+                with open(self.filepath, "r", encoding=file_encoding, errors="surrogateescape",
+                          buffering=1) as f:
+                    # buffering=1 means line buffered, errors = 'surrogateescape' replace byte to
+                    # encoding code, if error, turn back to same byte
+                    self.read_data = f.read()
+                f.close()
+            except LookupError:
+                return(3)
             return (self.read_data, self.filepath)
         except FileNotFoundError:  # if file/directory is requested which doesn't exist
             return(0)
