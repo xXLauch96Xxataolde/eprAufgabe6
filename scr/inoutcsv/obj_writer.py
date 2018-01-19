@@ -29,7 +29,8 @@ class OutFileWriter:
         self.char_stat = rounded_char_stat
         self.save_to_file(filepath)
 
-    def dict_entry_float_rounder(self, float_dict):
+    @staticmethod
+    def dict_entry_float_rounder(float_dict):
         """dict_entry_float_rounder
 
         What a handy function. This func takes a dict full of keys and values 
@@ -39,14 +40,16 @@ class OutFileWriter:
             float_dict[k] = round(float_dict[k], 3)
         return float_dict
 
-    def check_remove_stat_file(self, filepath):
+    @staticmethod
+    def check_remove_stat_file(filepath):
         """function, which deletes a file"""
         try:
             os.remove(filepath)
         except FileNotFoundError:
             pass
 
-    def write_intro_file(self, filename):
+    @staticmethod
+    def write_intro_file(filename):
         with open("definitions.txt", "r", errors="surrogateescape") as def_txt:
             def_obj = def_txt.read()
         def_txt.close()

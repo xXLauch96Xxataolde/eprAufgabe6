@@ -11,7 +11,9 @@ __email__ = "lisa.zeyen@outlook.com, uni.goethe.horde@gmail.com"
 # -----------------------------FUNCTIONS-----------------------------------------------------------
 def analyzer(file_data, filepath):
     """function, which has as a parameter the whole text file as a string and returns the
-    statistics of this text file as an JSON Object"""
+
+    statistics of this text file as an JSON Object
+    """
     word_list = file_data.split()   # splits the text file into words
     # print(word_list)   # for testing
     # print(len(word_list))
@@ -37,8 +39,10 @@ def analyzer(file_data, filepath):
 
 
 def word_count(word_list):
-    """function, which takes as a parameter a list and returns the number of elements of this
-    list"""
+    """function, which takes as a parameter a list and
+
+    returns the number of elements of this list
+    """
     word_count_n = len(word_list)    # number of elements
     # print(word_count_n)              # for testing
     return word_count_n
@@ -51,7 +55,7 @@ def stroke_count(file_data):
         if c.islower() or c == '.' or c == ',' or c == ' ':
             stroke_count_n += 1
         else:
-            stroke_count_n += 2
+                stroke_count_n += 2
     return stroke_count_n
 
 
@@ -66,7 +70,9 @@ def char_count(file_data):
 
 def char_frequency_distribution(file_data):
     """functions, which takes as a parameter a text and returns a dictionnary with character:
-    relative frequency"""
+
+    relative frequency
+    """
     char_n = len(file_data)  # number of characters in the text
     char_n -= file_data.count("\n")
     char_stat_relativ = {}   # dictionary for relative frequency
@@ -80,7 +86,9 @@ def char_frequency_distribution(file_data):
 
 def word_frequency_distribution(word_list):
     """functions which takes as parameter a list of words and returns a dictionary with word:
-    relative frequency"""
+
+    relative frequency
+    """
     num_words = len(word_list)   # number of words in the text
     words_stat_relativ = {}      # dictionary for relative frequency
     words_stat = {i: word_list.count(i) for i in word_list}   # dictionary with total frequency
@@ -91,7 +99,9 @@ def word_frequency_distribution(word_list):
 
 
 def mean_word_length(word_list):
-    """function which takes as a parameter the cleaned word list and returns the mean word length
+    """function which takes as a parameter the cleaned word list and
+
+     returns the mean word length
     """
     num_words = len(word_list)  # number of words in the text
     num_char = 0     # number of characters

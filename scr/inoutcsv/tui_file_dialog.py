@@ -1,3 +1,6 @@
+"""Module which handles the console user interface
+"""
+
 import fnmatch
 import os
 import main

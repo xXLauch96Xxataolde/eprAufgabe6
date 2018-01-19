@@ -27,16 +27,16 @@ class Handler:
         Thats the reason for default values here.   
         """
 
-        if (num == 1):
+        if num == 1:    # console user interface
             self.filepath = filepath
-        elif (num == 2):
-            """class inisialization"""
+        elif num == 2:  # grapgical user interface
+            """class initialization"""
             self.root = tk.Tk()
-            self.root.attributes("-topmost", True)
+            self.root.attributes("-topmost", True)  # window stays above the others
             self.root.withdraw()
             self.filepath = askopenfilename()   # creates a file dialog object
 
-    def read_file(self, filepath=None):
+    def read_file(self):
         """read_file
 
         catch lookup error with buffering 
@@ -44,8 +44,8 @@ class Handler:
         """
         file_encoding = " "
         # dictionary to test for different coding systems
-        if (self.filepath == ""):  # checks if user aborted file dialog
-            return(2)
+        if self.filepath == "":  # checks if user aborted file dialog
+            return 2
         print("Filepath:", self.filepath)
 
         encode_dict = {
@@ -56,8 +56,8 @@ class Handler:
             f = open(self.filepath, "r")
             temp = f.readline()       # save the first line in an string temp
             f.close()
-        except UnicodeDecodeError:
-            return(1)
+        except UnicodeDecodeError:    # file cannot be decoded
+            return 1
 
         for key in encode_dict:
             if temp.startswith(key):  # check for empty lines
@@ -76,8 +76,8 @@ class Handler:
                     # encoding code, if error, turn back to same byte
                     self.read_data = f.read()
                 f.close()
-            except LookupError:
-                return(3)
-            return (self.read_data, self.filepath)
+            except LookupError:   # unkown file coding
+                return 3
+            return self.read_data, self.filepath
         except FileNotFoundError:  # if file/directory is requested which doesn't exist
-            return(0)
+            return 0
