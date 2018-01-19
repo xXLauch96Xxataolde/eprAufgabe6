@@ -18,15 +18,19 @@ class Handler:
     UTF8_fname = "UTF8_Morgen_Kinder.txt"
     filepath = ""
 
-    def __init__(self):
-        """class inisialization"""
-        self.root = tk.Tk()
-        self.root.withdraw()
-        self.filepath = askopenfilename()   # creates a file dialog object
+    def __init__(self, num=2, filepath=None):
+        if (num == 1):
+            self.filepath = filepath
+        elif (num == 2):
+            """class inisialization"""
+            self.root = tk.Tk()
+            self.root.attributes("-topmost", True)
+            self.root.withdraw()
+            self.filepath = askopenfilename()   # creates a file dialog object
 
-    def read_file(self):
+    def read_file(self, filepath=None):
         """read_file
-        
+
         catch lookup error with buffering 
         and return error = 3
         """
