@@ -1,6 +1,8 @@
 import fnmatch
 import os
 from nt import chdir
+import main
+import sys
 
 
 def dict_printer(files_dict):
@@ -74,9 +76,11 @@ def list_txts():
 
 def tui_main():
     print(os.path.abspath(os.curdir))
-    # dir up down number
+    # dir up number
+    print("Some explanation for the user what he or she or the preferred gender or the preferred pronouns can press")
+    print("Basically an explanation about the option. which goes exactly here")
+    # he/she/X can use up to go up a dir
     while(True):
-
         inp = input()
         if inp == "up":
             if(os.path.abspath(os.curdir) != "C:\\"):
@@ -91,6 +95,7 @@ def tui_main():
                 os.chdir("..")
             elif(file == 1):
                 os.path.abspath(os.curdir)
+                print(os.path.abspath(os.curdir))
             elif(file == 2):
                 print("No *.txt files")
                 os.path.abspath(os.curdir)
@@ -110,7 +115,9 @@ def tui_main():
             else:
                 os.chdir(file)
             print(os.path.abspath(os.curdir))
+        elif(inp=="exit"):
+            main.error_code(2)
+            sys.exit()
+        else:
+            print("Non valid input. Repeat")
 
-
-if __name__ == '__main__':
-    main()
