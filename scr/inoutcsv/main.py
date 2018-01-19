@@ -17,7 +17,13 @@ __email__ = "uni.goethe.horde@gmail.com"
 
 # ------------------FUNCTIONS----------------------------------------------------------------------
 def error_code(n):
-    """procedure, if the chosen file is not found"""
+    """Error Codes
+    
+    impressed with detailed error codes in lets say game installtions
+    we decided to manage error codes for the class Handler centrally.
+    If something goes wrong, the Handler object returns an int, which
+    represents an error class
+    """
     if (n == 0):
         print("No such file or directory.")
     elif (n == 1):

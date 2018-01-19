@@ -19,6 +19,15 @@ class Handler:
     filepath = ""
 
     def __init__(self, num=2, filepath=None):
+        """Constructor
+
+        we see some odd default values for num and filepath. This is because the tui version
+        uses an instance of this class as well the gui version. because the constructor is 
+        loaded anyway and loads a tkinter instance, the default values had to be put in place. 
+        A tui version doesn't require a gui (like really) but should somehow transfer a filepath.
+        Thats the reason for default values here.   
+        """
+
         if (num == 1):
             self.filepath = filepath
         elif (num == 2):

@@ -75,7 +75,7 @@ def char_frequency_distribution(file_data):
 
 
 def word_frequency_distribution(word_list):
-    """functions which takes as parameter a list of words and returns a dictionnary with word:
+    """functions which takes as parameter a list of words and returns a dictionary with word:
     relative frequency"""
     num_words = len(word_list)   # number of words in the text
     words_stat_relativ = {}      # dictionary for relative frequency
