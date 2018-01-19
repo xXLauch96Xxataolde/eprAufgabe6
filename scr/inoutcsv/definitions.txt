@@ -1,0 +1,36 @@
+﻿=====Content=====
+1) How to Encode
+2) Definitions
+3) Statistics 
+=================
+
+1) How to Encode
+This is a UTF-8 encoded .txt
+The statistics data is a json, which should perform well on many machines
+
+2) Defintions
+Definition of a Word
+A word is a sequence of chars, which is ended by a blank, a point, an exclamation mark or quotes. 
+"Geht's" is one word.
+
+Definition of a Char:
+All lower case letters including "ß", ",",".", are one stroke. 
+Upper case letters like "A" or "!" count as two strokes.
+
+Definition of characters count:
+Every character except the blank or space are counted. Please note,
+that not only letters are counted, but exclamation marks or points as well. 
+
+Definition of Char Frequency Distribution:
+All characters including blanks are represented in this statistic. 
+All values are rounded relative floats, with 3 digits after the point.
+
+Definition of Word Frequency Distribution:
+Please regard the first definition of a word. In this statistic,
+it doens't matter if a word starts with an lower or upper case letter different,
+f.e. at the beginning of a sentence. As long as the words themselves are identical, there are no different frequency distributions.
+
+Definition of Mean Word Length:
+The number of chars of a single word without blanks, comma, point, quotes and exclamation marks is determined and divided through number of all words. 
+
+3) Statistics

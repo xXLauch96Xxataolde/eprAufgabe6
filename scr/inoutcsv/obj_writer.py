@@ -8,6 +8,8 @@ import json
 import os
 import codecs
 import math
+from distutils.command.check import check
+from fileinput import filename
 
 
 class OutFileWriter():
@@ -33,6 +35,20 @@ class OutFileWriter():
             float_dict[k] = round(float_dict[k], 3)
         return(float_dict)
 
+    def check_remove_stat_file(self, filepath):
+        try:
+            os.remove(filepath)
+        except FileNotFoundError:
+            pass
+
+    def write_intro_file(self, filename):
+        with open("definitions.txt", "r", errors="surrogateescape") as def_txt:
+            def_obj = def_txt.read()
+        def_txt.close()
+        with open(filename, "a") as file:
+            file.write(def_obj)
+        file.close()
+
     def save_to_file(self, filepath):
         """Save_to_file
 
@@ -42,7 +58,14 @@ class OutFileWriter():
         """
         temp_var = filepath.split(".")
         temp_var = temp_var[0] + "_statistics." + temp_var[1]
-        with open(temp_var, "w", encoding="UTF-8") as file:
+
+        # deletes possible old stat files.
+        self.check_remove_stat_file(temp_var)
+
+        # writes an intro to the stat file
+        self.write_intro_file(temp_var)
+
+        with open(temp_var, "a", encoding="UTF-8") as file:
             json.dump(self.__dict__, file, ensure_ascii=False, indent=4)
         file.close()
         print("Statistics File saved to:", temp_var)
