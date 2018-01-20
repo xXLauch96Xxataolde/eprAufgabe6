@@ -35,7 +35,7 @@ The number of chars of a single word without blanks, comma, point, quotes and ex
 
 3) Statistics{
     "word_count": 155,
-    "stroke_count": 1161,
+    "stroke_count": 1122,
     "word_stat_relativ": {
         "morgen": 3.871,
         "Kinder": 3.226,

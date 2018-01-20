@@ -52,7 +52,7 @@ def stroke_count(file_data):
     """function, which counts the key strokes of a given string"""
     stroke_count_n = 0
     for c in file_data:
-        if c.islower() or c == '.' or c == ',' or c == ' ':
+        if c.islower() or c == '.' or c == ',' or c == ' ' or c == '\n':
             stroke_count_n += 1
         else:
                 stroke_count_n += 2
@@ -93,7 +93,6 @@ def word_frequency_distribution(word_list):
     for j in range(len(word_list)):
         for i in range(len(word_list)):
             if word_list[j].lower() == word_list[i].lower() and word_list[j] != word_list[i]:
-                print(word_list[j], word_list[i])
                 word_list[j] = word_list[j].lower()
                 word_list[i] = word_list[j].lower()
 
