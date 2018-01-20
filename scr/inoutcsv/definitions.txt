@@ -23,7 +23,7 @@ that not only letters are counted, but exclamation marks or points as well.
 
 Definition of Char Frequency Distribution:
 All characters including blanks are represented in this statistic. 
-All values are rounded relative floats, with 3 digits after the point.
+All values are relative floats, rounded to the nearest thousandths (3 decimal places).
 
 Definition of Word Frequency Distribution:
 Please regard the first definition of a word. In this statistic,

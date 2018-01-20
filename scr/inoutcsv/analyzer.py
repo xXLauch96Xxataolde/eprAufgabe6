@@ -91,7 +91,14 @@ def word_frequency_distribution(word_list):
     """
     num_words = len(word_list)   # number of words in the text
     words_stat_relativ = {}      # dictionary for relative frequency
-    words_stat = {i: word_list.count(i) for i in word_list}   # dictionary with total frequency
+    words_stat = {}
+    for i in word_list:
+        for key in words_stat:
+            if key.lower() == i.lower():
+                print(key)
+                words_stat.update({key: word_list.count(i)})
+        else:
+            words_stat = {i: word_list.count(i)}
     for key in words_stat:
         average = words_stat[key] * 100 / num_words
         words_stat_relativ.update({key: average})

@@ -10,7 +10,7 @@ import analyzer
 import tui_file_dialog
 
 
-__author__ = "5241945: Elisabeth Zeyen, 6785468: Robert Anselm Dieter am Wege"
+__author__ = "5241945: Elisabeth Zeyen, 1234567: Xmas Jesus"
 __copyright__ = "Copyright 2017/2018 – EPR-Goethe-Uni"
 __email__ = "lisa.zeyen@outlook.com, uni.goethe.horde@gmail.com"
 
@@ -61,9 +61,12 @@ def option_gui():
 def main():
     """main function"""
     while True:
-        inp = input("Choose your prefered interface: \n 1 console user interface (press '1') \n"
-              " 2 graphical user interface (press '2')\n --------------------------------------\n"
-              "→ to leave the program enter 'exit' ")
+        print("Choose your prefered interface: \n"
+              " 1 console user interface: press", '\033[1m', "'1'", '\033[0m', " \n"
+              " 2 graphical user interface: press", '\033[1m', "'2'", '\033[0m', "\n "
+              "--------------------------------------------\n"
+              "→ to leave the program enter", '\033[1m', "'exit'", '\033[0m')
+        inp = input()
         if inp == "1":
             option_tui()
             break
