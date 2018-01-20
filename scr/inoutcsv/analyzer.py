@@ -89,16 +89,17 @@ def word_frequency_distribution(word_list):
 
     relative frequency
     """
+    # to add for example 'morgen' and 'Morgen' to the same frequency
+    for j in range(len(word_list)):
+        for i in range(len(word_list)):
+            if word_list[j].lower() == word_list[i].lower() and word_list[j] != word_list[i]:
+                print(word_list[j], word_list[i])
+                word_list[j] = word_list[j].lower()
+                word_list[i] = word_list[j].lower()
+
     num_words = len(word_list)   # number of words in the text
     words_stat_relativ = {}      # dictionary for relative frequency
-    words_stat = {}
-    for i in word_list:
-        for key in words_stat:
-            if key.lower() == i.lower():
-                print(key)
-                words_stat.update({key: word_list.count(i)})
-        else:
-            words_stat = {i: word_list.count(i)}
+    words_stat = {i: word_list.count(i) for i in word_list}
     for key in words_stat:
         average = words_stat[key] * 100 / num_words
         words_stat_relativ.update({key: average})
