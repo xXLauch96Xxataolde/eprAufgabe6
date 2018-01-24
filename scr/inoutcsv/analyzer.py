@@ -3,10 +3,6 @@
 import json
 import obj_writer
 
-__author__ = "5241945: Elisabeth Zeyen, 6785468: Robert Anselm Dieter am Wege"
-__copyright__ = "Copyright 2017/2018 – EPR-Goethe-Uni"
-__email__ = "lisa.zeyen@outlook.com, uni.goethe.horde@gmail.com"
-
 
 # -----------------------------FUNCTIONS-----------------------------------------------------------
 def analyzer(file_data, filepath):
@@ -55,7 +51,7 @@ def stroke_count(file_data):
         if c.islower() or c == '.' or c == ',' or c == ' ' or c == '\n':
             stroke_count_n += 1
         else:
-                stroke_count_n += 2
+            stroke_count_n += 2
     return stroke_count_n
 
 
@@ -118,11 +114,11 @@ def mean_word_length(word_list):
         for j in range(len(word)):
             char_list.append(word[j])   # appends the letters of the word to the list
     num_char += len(char_list)   # lenght of the character list = total amount of characters
-    mean_length = num_char/num_words
+    mean_length = num_char / num_words
     # print(mean_length)
     return mean_length
-    
-    
+
+
 def string_cleaner(word_list):
     """function, which takes as a parameter a list and removes '!', '.', ',', '-' """
     word_list2 = []

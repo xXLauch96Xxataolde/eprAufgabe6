@@ -10,11 +10,6 @@ import analyzer
 import tui_file_dialog
 
 
-__author__ = "5241945: Elisabeth Zeyen, 1234567: Xmas Jesus"
-__copyright__ = "Copyright 2017/2018 – EPR-Goethe-Uni"
-__email__ = "lisa.zeyen@outlook.com, uni.goethe.horde@gmail.com"
-
-
 # ------------------FUNCTIONS----------------------------------------------------------------------
 def error_code(n):
     """procedure, if there is an error with the chosen file"""

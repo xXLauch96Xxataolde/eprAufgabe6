@@ -6,11 +6,6 @@ import main
 import sys
 
 
-__author__ = "5241945: Elisabeth Zeyen, 6785468: Robert Anselm Dieter am Wege"
-__copyright__ = "Copyright 2017/2018 – EPR-Goethe-Uni"
-__email__ = "lisa.zeyen@outlook.com, uni.goethe.horde@gmail.com"
-
-
 def dict_printer(files_dict):
     """procedure, which prints out numerated the files in a directory"""
     for k in files_dict:
@@ -137,7 +132,7 @@ def tui_main():
     while True:
         print(" -----------------------------------------------------------------------\n"
               " •   to open a list of the directories in current directory enter",
-              '\033[1m', "'dir' \n", '\033[0m' 
+              '\033[1m', "'dir' \n", '\033[0m'
               "•	 to open a list of the *.txt files in current directory enter", '\033[1m', "'txt'"
               " \n", '\033[0m'
               "•	 to move one directory up enter", '\033[1m', "'up' \n", '\033[0m'
